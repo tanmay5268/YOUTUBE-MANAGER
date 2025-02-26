@@ -1,4 +1,5 @@
 import json
+import time
 def loadvid() :
     try:
         with open('youtube.txt','r') as file:
@@ -13,17 +14,43 @@ def save_vid(videos):
         json.dump(videos,file)
 
 def listvid(videos):
+    print("\n")
+    print("="*70)
+    if videos==[]:
+        print("No videos in the list")
     for index, video in enumerate(videos,start=1):
         print(f"{index}. {video['name']},duration:{video['time']}")
+    print("="*70)
 def addvid(videos):
     name= input("Enter video name: ")
     time = input("Enter video time: ")
     videos.append({'name':name,'time':time})
     save_vid(videos)
-def updatevid():
-    pass
+def updatevid(videos):
+    listvid(videos)
+    index = int(input("Enter the index of the video you want to update: "))
+    if index > 0 and index <= len(videos):
+        name = input("Enter new video name: ")
+        time = input("Enter new video time: ")
+        videos[index-1]['name'] = name
+        videos[index-1]['time'] = time
+        save_vid(videos)
+    else :
+        print("BHAI YE TO INDEX HI NAHI HAI ")
+
 def deletevid(videos):
-    pass
+    listvid(videos)
+    index = int(input("Enter the index of the video you want to delete: "))
+    if index > 0 and index <= len(videos):
+        del videos[index-1]
+        save_vid(videos)
+        for i in range(5):
+            print(".",end = "")
+            time.sleep(1)
+        print("index",index,"deleted")       
+    else:
+        print("BHAI YE TO INDEX HI NAHI HAI ")
+
 def main():
     videos = loadvid() #loading of list of info eg.name , time , links
     while True:
