@@ -1,12 +1,29 @@
+import json
+def loadvid() :
+    try:
+        with open('youtube.txt','r') as file:
+            return json.load(file)        
+    except FileNotFoundError:
+        return []
+
+def save_vid(videos):
+    with open('youtube.txt','w') as file:
+        json.dump(videos,file)
+
 def listvid(videos):
-    pass
+    for index, video in enumerate(videos,start=1):
+        print(f"\n{index}.{videos}")
 def addvid(videos):
-    pass
+    name= input("Enter video name: ")
+    time = input("Enter video time: ")
+    videos.append({'name':name,'time':time})
+    save_vid(videos)
 def updatevid():
     pass
 def deletevid(videos):
     pass
 def main():
+    videos = loadvid()
     while True:
         print("\n HEY,Welcome to YOUTUBE Manager------select an option")
         print("1. List all videos")
@@ -15,6 +32,7 @@ def main():
         print("4. Delete video/s")
         print("5. Exit the app")
         option = input("what's your option?---")
+        
         match option:
             case '1':
                 listvid(videos)
@@ -30,4 +48,3 @@ def main():
                 print("\nBHAI OPTIONS NAHI DIKHTE KYA")
 if __name__ == "__main__":
     main()
-
