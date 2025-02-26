@@ -2,7 +2,9 @@ import json
 def loadvid() :
     try:
         with open('youtube.txt','r') as file:
-            return json.load(file)        
+            test = json.load(file)
+            print(type(test))
+            return test        
     except FileNotFoundError:
         return []
 
@@ -12,7 +14,7 @@ def save_vid(videos):
 
 def listvid(videos):
     for index, video in enumerate(videos,start=1):
-        print(f"\n{index}.{videos}")
+        print(f"{index}. {video['name']},duration:{video['time']}")
 def addvid(videos):
     name= input("Enter video name: ")
     time = input("Enter video time: ")
@@ -23,7 +25,7 @@ def updatevid():
 def deletevid(videos):
     pass
 def main():
-    videos = loadvid()
+    videos = loadvid() #loading of list of info eg.name , time , links
     while True:
         print("\n HEY,Welcome to YOUTUBE Manager------select an option")
         print("1. List all videos")
