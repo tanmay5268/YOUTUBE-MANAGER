@@ -3,7 +3,7 @@ import time
 def loadvid() :
     try:
         with open('youtube.txt','r') as file:
-            test = json.load(file)
+            test = json.load(file) #json.load ,file ke ander se jason format data ko python object me convert karta hai
             print(type(test))
             return test        
     except FileNotFoundError:
