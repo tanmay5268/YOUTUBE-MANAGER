@@ -46,8 +46,15 @@ def main():
             time = input("Enter the time of the video: ")
             updatevid(id ,name,time)
         elif option == "4":
-            id = input("Enter the id of the video: ")
-            deletevid(id)
+             lstvid()
+             cursor.execute("SELECT COUNT(*) FROM videos")
+             count = cursor.fetchone()[0]
+             id = int(input("Enter the id of the video: "))
+             if id<=count:
+                 deletevid(id)
+             else:
+                print("Invalid id, please select a valid id")
+           
         elif option == "5":
             break
         else:
