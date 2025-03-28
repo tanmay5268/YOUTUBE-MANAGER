@@ -56,11 +56,11 @@ def main():
                 print("Invalid id, please select a valid id")
            
         elif option == "5":
-            break
+            exit()
         else:
             print("Invalid option, please select a valid option")
     
-    conn.close()
+            conn.close()
         
 if __name__ =="__main__":
     main()

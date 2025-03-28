@@ -3,11 +3,10 @@ import time
 def loadvid() :
     try:
         with open('youtube.txt','r') as file:
-            test = json.load(file) #json.load ,file ke ander se jason format data ko python object me convert karta hai
-            print(type(test))
+            test = json.load(file) #json.load ,file ke ander se jason format data ko python list me convert karta hai
             return test        
     except FileNotFoundError:
-        return []
+        return [] #agar file nahi hai to empty list return karega
 
 def save_vid(videos):
     with open('youtube.txt','w') as file:
