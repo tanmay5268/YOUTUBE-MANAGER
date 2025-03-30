@@ -3,7 +3,7 @@ import time
 def loadvid() :
     try:
         with open('youtube.txt','r') as file:
-            test = json.load(file) #json.load ,file ke ander se jason format data ko python list me convert karta hai
+            test = json.load(file) #json.load ,file ke ander se json format data ko python list me convert karta hai
             return test        
     except FileNotFoundError:
         return [] #agar file nahi hai to empty list return karega
@@ -35,7 +35,7 @@ def updatevid(videos):
         videos[index-1]['time'] = time
         save_vid(videos)
     else :
-        print("BHAI YE TO INDEX HI NAHI HAI ")
+        print("BHAI YE TO INDEX HI NAHI HAI!! ")
 
 def deletevid(videos):
     listvid(videos)
