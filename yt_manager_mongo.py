@@ -13,6 +13,23 @@ except pymongo.errors.ServerSelectionTimeoutError:
     print('somethimg went really wrong bro!!!!!!')
     exit()
 
+def listvideos():
+    videos= vid_collection.find()
+    if vid_collection.count_documents({}) == 0:
+        print("No videos found. Add some videos first!")
+        return
+        
+    print("\n=== Your Videos ===")
+    for video in videos:
+        print(f"ID: {video['_id']}, Name: {video['name']}, Time: {video['time']}")
+    print("==================")
+def addvideo(name,time):
+    video_data={
+        'name':name,'time':time
+    }
+    result=vid_collection.insert_one(video_data)
+    print(f"Videos added with id:{result.inserted_id}")
+
 def main():
     print('\n')
     print('WELCOME TO MONGO--YT MANAGER')
@@ -32,7 +49,7 @@ def main():
             case 2 :
                 name =input('ENTER NAME OF NEW VIDEO:')
                 time =int(input('ENTER DURATION:'))
-                updatevideo(name,time)
+                addvideo(name,time)
             case 3:
                 listvideos()
                 index= int(input('ENTER VIDEO INDEX U WANNA CHANGE BLUD:'))
